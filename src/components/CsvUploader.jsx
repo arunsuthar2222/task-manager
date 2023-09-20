@@ -35,7 +35,9 @@ const CsvUploader = () => {
     
       const parseCSVData = (csvText) => {
         let lines = csvText.split("\n");
+        lines = lines.map(row => row.replace(/"/g, ""));
         lines = lines.map(line => line.replace("\r", "")).filter(row =>  row.trim() !== '')
+        console.log(lines)
         const data = [];
         let headers = lines[0].split(",");
         headers = headers.map(header => toCamelCase(header));
